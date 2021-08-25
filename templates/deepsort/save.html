@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} | Select view {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="p-3 text-center">
+    <h1>Select Video To Save Image</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for path in file_path %}
+        <div>
+            <button type="submit" id="title" name="title" value="{{path}}" class="btn btn-outline-primary" href="{% url 'deepsort:save' %}">{{path}}</button>
+        </div>
+        {% endfor %}
+    </form>
+</div>
+
+{% endblock %}

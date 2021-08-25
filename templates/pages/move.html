@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} | Move {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="p-5">
+    <a class="h1">Person</a>
+    <form action="{% url 'pages:merge' %}" method="POST">
+        {% csrf_token %}
+        <div class="p-3">
+            {% for image in images %}
+                <input type="checkbox" name="images" id="{{ forloop.counter }}" value="{{image.folder}}" />
+                <label for="{{ forloop.counter }}"><img src="{% static image.file %}" /></label>
+            {% endfor %}
+        </div>
+        <div class="container" style="text-align:center;">
+            <div class="row justify-content-center">
+                <input type="submit" name="merge" value="merge" class="btn btn-primary btn-lg btn-block col-2">
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

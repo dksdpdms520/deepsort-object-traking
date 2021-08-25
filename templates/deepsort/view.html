@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} | View {% endblock %}
+
+{% load static %}
+
+{% load get_item %}
+{% load add_number %}
+
+{% block content %}
+
+<div class="h1 p-1" style="text-align:center;">
+    We Found {{ total_people }} people in the video.
+</div>
+
+{% for idx in image_files %}
+    <div class="p-5">
+        <a class="h1">Person {{idx}}</a>
+        <form action="{% url 'deepsort:modify_images' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="video_id" value="{{ video_id }}">
+            <div class="p-3">
+                {% for image in image_files|get_item:idx %}
+                    <input type="checkbox" name="images" id="{{image.id}}" value="{{image.id}}" />
+                    <label for="{{image.id}}"><img src="{{ image.file.url }}" /></label>
+                {% endfor %}
+            </div>
+            <div class="container" style="text-align:center;">
+                <div class="row justify-content-center">
+                    <select name="image_to" class="form-control col-2">
+                        <option selected="true" disabled="disabled">Transfer To</option>
+                        {% for person_index in people_indices %}
+                            {% if person_index != idx %}
+                            <option value="{{ person_index }}" > {{ person_index }} </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <input type="submit" name="change" value="change" class="btn btn-primary btn-lg btn-block col-2">
+                </div>
+                <div class="row justify-content-center">
+                    <input type="submit" name="delete" value="delete" class="btn btn-danger btn-lg btn-block col-4">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} | Check {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="p-3 text-center">
+    <h1>Select Video To Run Deepsort</h1>
+    {% for video in videos %}
+    <div>
+        <a class="h5" href="{{ video.get_absolute_url }}">{{ video.title }}</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

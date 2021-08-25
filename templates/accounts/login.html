@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} | Login {% endblock %}
+
+{% block content %}
+
+<section id="login" class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card">
+          <div class="card-header bg-dark text-white">
+            <h4>
+              <i class="fas fa-sign-in-alt"></i> Login</h4>
+          </div>
+          <div class="card-body">
+            <form action="{% url 'accounts:account_login' %}" method="POST">
+              {% csrf_token %}
+              {% if form.errors %}
+                <div class="alert alert-primary" rol="alert">
+                  Error: Username or Password is not correct.
+                </div>
+              {% endif %}
+              <div class="form-group">
+                <label for="username">{{ form.username.label }}<span class="text-muted small">
+                  </span></label>
+                {{ form.username }}
+              </div>
+              <div class="form-group">
+                <label for="password2">{{ form.password.label }}<span class="text-muted small">
+                  </span></label>
+                {{ form.password }}
+              </div>
+              <input type="submit" value="Login" class="btn btn-secondary btn-block">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

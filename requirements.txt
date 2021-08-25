@@ -1,0 +1,6 @@
+opencv-python==4.1.1.26
+lxml
+absl-py
+easydict
+pillow
+django

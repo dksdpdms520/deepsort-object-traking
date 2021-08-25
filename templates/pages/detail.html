@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} | detail {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Food that we provide</h1>
+        <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ullamcorper magna vel lorem gravida porta. Phasellus convallis a turpis ut.</p>
+        <p>
+          <a href="{% url 'accounts:account_register' %}" class="btn btn-primary my-2">Register Now</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <div class="d-grid div-category gap-2 d-md-block justify-content-md-center">
+      <button class="btn btn-lg" type="button"
+      onclick="displayFoodByCategory('all','{% url 'pages:detail' %}', '{{ csrf_token }}')">All</button>
+      {% for category in food_category %}
+      <button class="btn btn-lg" id="category-btn{{ forloop.counter }}" type="button"
+        onclick="displayFoodByCategory('{{ forloop.counter }}','{% url 'pages:detail' %}', '{{ csrf_token }}')">{{ category.name }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div id="foodCards" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for food_each in food %}
+        <div class="col p-2">
+          <div class="card shadow-sm">
+            <img class="card-img-top" src="{{ food_each.image.url }}">
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ food_each.name }}</text>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="{% static 'js/category.js' %}"></script>
+{% endblock %}

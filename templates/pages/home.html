@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} | home {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<body class="text-center">
+    <div class="container h-100 p-5 mx-auto flex-column">
+        <img class="img-cover" src="{% static 'images/cover.jpg' %}">
+      <main role="main" class="inner p-5">
+        
+        <h1 class="heading">Check Your Sales.</h1>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id urna eget nibh porta tristique..</p>
+        <p class="lead">
+          <a href="{% url 'accounts:account_register' %}" class="btn btn-lg btn-secondary">Register Now</a>
+        </p>
+        <p class="text-center p-2">
+          <a href="{% url 'pages:move' %}"><u>Move</u></a>
+        </p>
+      </main>
+    </div>
+</body>
+
+{% endblock %}

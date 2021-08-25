@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} | Deepsort {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="p-3 text-center">
+    <a type="button" class="btn btn-outline-primary p-3" href="{% url 'deepsort:upload' %}">Upload Video</a>
+    <a type="button" class="btn btn-outline-primary p-3" href="{% url 'deepsort:check' %}">Run Video</a>
+    <a type="button" class="btn btn-outline-primary p-3" href="{% url 'deepsort:view_images' %}">Check Images</a>
+    <a type="button" class="btn btn-outline-primary p-3" href="{% url 'deepsort:save' %}">Save Images To Database</a>
+</div>
+
+{% endblock %}
